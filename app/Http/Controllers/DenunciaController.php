@@ -102,7 +102,7 @@ class DenunciaController extends Controller
         //     $url = "";
         // }
 
-        // $path = "https://web.regionancash.gob.pe/fs/temp/" . $tempFile;
+        // $path = "http://web.regionancash.gob.pe/fs/temp/" . $tempFile;
 
 
         $input1  = array('anonimo' => $anonimo);
@@ -214,7 +214,7 @@ class DenunciaController extends Controller
                 "from": "denuncias@regionancash.gob.pe",
                 "body": "' . $msj . '"
                 }';
-            $request = new Psr7Request('POST', 'https://regionancash.gob.pe/sendtoenvio.php', $headers, $body);
+            $request = new Psr7Request('POST', 'http://regionancash.gob.pe/sendtoenvio.php', $headers, $body);
             $res = $client->sendAsync($request)->wait();
             $res->getBody();
         }
@@ -268,7 +268,7 @@ class DenunciaController extends Controller
                 "from": "denuncias@regionancash.gob.pe",
                 "body": "' + $msj2 + '"
                 }';
-            $request = new Psr7Request('POST', 'https://regionancash.gob.pe/sendtoenvio.php', $headers, $body);
+            $request = new Psr7Request('POST', 'http://regionancash.gob.pe/sendtoenvio.php', $headers, $body);
             $res = $client->sendAsync($request)->wait();
             $res->getBody();
         }
