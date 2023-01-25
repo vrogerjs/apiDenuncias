@@ -221,7 +221,7 @@ class DenunciaController extends Controller
 
         return response()->json(["result" => $result, 'msj' => $msj, 'selector' => $selector]);
     }
-
+    
     public function updateDenuncia(Request $request)
     {
         $respuesta = $request->respuesta;
