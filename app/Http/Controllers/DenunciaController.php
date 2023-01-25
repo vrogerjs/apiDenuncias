@@ -102,7 +102,7 @@ class DenunciaController extends Controller
         //     $url = "";
         // }
 
-        // $path = "http://web.regionancash.gob.pe/fs/temp/" . $tempFile;
+        // $path = "https://web.regionancash.gob.pe/fs/temp/" . $tempFile;
 
 
         $input1  = array('anonimo' => $anonimo);
@@ -202,7 +202,7 @@ class DenunciaController extends Controller
 
             $msj = '<p>Su denuncia de un acto de corrupción en el Gobierno Regional de Ancash fue registrado con éxito, así mismo en el transcurso de los días se le estará enviando un correo con lo actuado. <i><strong>"Por un gobierno de Integridad y Transparencia”</strong></i>.</p><p><strong>Gobierno Regional de Ancash</strong></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
 
-            $client = new Client();
+            $client = new Client(['verify' => false]);
             $headers = [
                 'Content-Type' => 'application/json'
             ];
@@ -214,7 +214,7 @@ class DenunciaController extends Controller
                 "from": "denuncias@regionancash.gob.pe",
                 "body": "' . $msj . '"
                 }';
-            $request = new Psr7Request('POST', 'http://regionancash.gob.pe/sendtoenvio.php', $headers, $body);
+            $request = new Psr7Request('POST', 'https://regionancash.gob.pe/sendtoenvio.php', $headers, $body);
             $res = $client->sendAsync($request)->wait();
             $res->getBody();
         }
@@ -256,7 +256,7 @@ class DenunciaController extends Controller
 
             $msj2 = '<p>Su denuncia de un acto de corrupción en el Gobierno Regional de Ancash fue actualizado con éxito. <br>Se actualizo con lo siguiente:' + $respuesta + '<i><strong>"Por un gobierno de Integridad y Transparencia”</strong></i>.</p><p><strong>Gobierno Regional de Ancash</strong></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
 
-            $client = new Client();
+            $client = new Client(['verify' => false]);
             $headers = [
                 'Content-Type' => 'application/json'
             ];
@@ -268,7 +268,7 @@ class DenunciaController extends Controller
                 "from": "denuncias@regionancash.gob.pe",
                 "body": "' + $msj2 + '"
                 }';
-            $request = new Psr7Request('POST', 'http://regionancash.gob.pe/sendtoenvio.php', $headers, $body);
+            $request = new Psr7Request('POST', 'https://regionancash.gob.pe/sendtoenvio.php', $headers, $body);
             $res = $client->sendAsync($request)->wait();
             $res->getBody();
         }
