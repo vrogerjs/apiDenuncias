@@ -1,0 +1,25 @@
+{
+    "anonimo" : "1",
+    "tipopersona" : "Juridico",
+    "tipodocumento" : "RUC",
+    "nrodocumento" : "10454545784",
+    "apenombres" : "",
+    "razonsocial" : "AgroIdeas",
+    "representante" : "Juan Mendoza Robles",
+    "domicilio" : "Huaraz - Huaraz - Ancash",
+    "telefono" : "123456789",
+    "email" : "juan@gmail.com",
+    "funcionario" : "2",
+    "cargo" : "",
+    "vinculo" : "Ninguno",
+    "apenombresdenunciado" : "Flor Rivera Rios",
+    "cargodenunciado" : "Subgerente de Obras",
+    "deschechos" : "El dia .......",
+    "documentacion" : "prueba.pdf",
+    "respuesta" : "",
+    "motivo_id" : "4",
+    "activo" : "1",
+    "borrado" : "0"
+}
+
+localhost:8000/api/addDenuncia
