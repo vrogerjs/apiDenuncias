@@ -112,3 +112,6 @@ Route::get('oficina', 'App\Http\Controllers\DenunciaController@getOficina');
 
 // Busqueda de Personal por Oficina
 Route::get('personal/{id}', 'App\Http\Controllers\DenunciaController@getPersonalxOficina');
+
+
+Route::get('sendmail', 'App\Http\Controllers\DenunciaController@sendEmail');
