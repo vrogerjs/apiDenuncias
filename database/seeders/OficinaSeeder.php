@@ -27,10 +27,6 @@ class OficinaSeeder extends Seeder
         Oficina::create(['name' => 'UNIDAD DE GESTIÓN EDUCATIVA LOCAL - ASUNCIÓN']);
         Oficina::create(['name' => 'UNIDAD DE GESTIÓN EDUCATIVA LOCAL - BOLOGNESI']);
         Oficina::create(['name' => 'UNIDAD DE GESTIÓN EDUCATIVA LOCAL - CARLOS F. FITZCARRALD']);
-        Oficina::create(['name' => 'UNIDAD DE GESTIÓN EDUCATIVA LOCAL - CARHUAZ']);
-        Oficina::create(['name' => 'UNIDAD DE GESTIÓN EDUCATIVA LOCAL - CARHUAZ']);
-        Oficina::create(['name' => 'UNIDAD DE GESTIÓN EDUCATIVA LOCAL - CARHUAZ']);
-        Oficina::create(['name' => 'UNIDAD DE GESTIÓN EDUCATIVA LOCAL - CARHUAZ']);
         Oficina::create(['name' => 'UNIDAD DE GESTIÓN EDUCATIVA LOCAL - CASMA']);
         Oficina::create(['name' => 'UNIDAD DE GESTIÓN EDUCATIVA LOCAL - CORONGO']);
         Oficina::create(['name' => 'UNIDAD DE GESTIÓN EDUCATIVA LOCAL - HUARAZ']);
@@ -79,11 +75,8 @@ class OficinaSeeder extends Seeder
         Oficina::create(['name' => 'DIRECCIÓN REGIONAL DE LA PRODUCCIÓN']);
         Oficina::create(['name' => 'DIRECCIÓN REGIONAL DE ENERGIA Y MINAS']);
         Oficina::create(['name' => 'DIRECCIÓN REGIONAL DE COMERCIO EXTERIOR Y TURISMO']);
-        Oficina::create(['name' => 'DIRECCIÓN REGIONAL DE AGRICULTURA']);
         Oficina::create(['name' => 'GERENCIA REGIONAL DE DESARROLLO SOCIAL']);
         Oficina::create(['name' => 'DIRECCIÓN REGIONAL DE VIVIENDA, CONSTRUCCIÓN Y SANEAMIENTO']);
-        Oficina::create(['name' => 'DIRECCIÓN REGIONAL DE SALUD']);
-        Oficina::create(['name' => 'DIRECCIÓN REGIONAL DE EDUCACIÓN']);
         Oficina::create(['name' => 'DIRECCIÓN DE ARCHIVO REGIONAL']);
         Oficina::create(['name' => 'DIRECCIÓN REGIONAL DE TRABAJO Y PROMOCIÓN DEL EMPLEO']);
         Oficina::create(['name' => 'GERENCIA REGIONAL DE INFRAESTRUCTURA']);
@@ -91,14 +84,10 @@ class OficinaSeeder extends Seeder
         Oficina::create(['name' => 'SUBGERENCIA DE SUPERVISIÓN Y LIQUIDACIÓN DE OBRAS']);
         Oficina::create(['name' => 'UNIDAD FORMULADORA']);
         Oficina::create(['name' => 'SUBGERENCIA DE OBRAS']);
-        Oficina::create(['name' => 'DIRECCIÓN REGIONAL DE TRANSPORTES Y COMUNICACIONES']);
         Oficina::create(['name' => 'GERENCIA REGIONAL DE RECURSOS NATURALES Y GESTIÓN AMBIENTAL']);
         Oficina::create(['name' => 'SUBGERENCIA DE GESTIÓN AMBIENTAL']);
-        Oficina::create(['name' => 'GERENCIA SUB REGIONAL EL PACIFICO']);
         Oficina::create(['name' => 'GERENCIA SUB REGIONAL CONCHUCOS ALTO']);
         Oficina::create(['name' => 'GERENCIA SUB REGIONAL CONCHUCOS BAJO']);
-        Oficina::create(['name' => 'PROYECTO ESPECIAL CHINECAS']);
-        Oficina::create(['name' => 'AUTORIDAD PORTUARIA REGIONAL']);
-        Oficina::create(['name' => 'TERMINAL PORTUARIO DE CHIMBOTE']);
+        Oficina::create(['name' => 'UNIDAD DE GESTIÓN EDUCATIVA LOCAL - CARHUAZ']);
     }
 }
