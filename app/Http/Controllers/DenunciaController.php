@@ -221,7 +221,7 @@ class DenunciaController extends Controller
 
     public function sendEmail(Request $request)
     {
-        $email="roger.jvs.08@gmail.com";
+        $email = "roger.jvs.08@gmail.com";
         $msj = '<p>Su denuncia de un acto de corrupción en el Gobierno Regional de Ancash fue registrado con éxito, así mismo en el transcurso de los días se le estará enviando un correo con lo actuado. <i><strong>"Por un gobierno de Integridad y Transparencia"</strong></i>.</p><p><strong>Gobierno Regional de Ancash</strong></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
 
         $client = new Client(['verify' => false]);
@@ -270,20 +270,17 @@ class DenunciaController extends Controller
 
             $msj = 'Se registro el procedimiento de la denuncia con Éxito.';
 
-            $msj2 = '<p>Su denuncia de un acto de corrupción en el Gobierno Regional de Ancash fue actualizado con éxito. <br>Se actualizo con lo siguiente:' + $respuesta + '<i><strong>"Por un gobierno de Integridad y Transparencia”</strong></i>.</p><p><strong>Gobierno Regional de Ancash</strong></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
+            $msj2 = '<p>Su denuncia de acto de corrupción en el Gobierno Regional de Ancash fue actualizado con éxito.<br>La actualización fue:' . $respuesta . '. <i><strong>"Por un gobierno de Integridad y Transparencia"</strong></i>.</p><p><strong>Gobierno Regional de Ancash</strong></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
 
             $client = new Client(['verify' => false]);
             $headers = [
                 'Content-Type' => 'application/json'
             ];
-            $body = '{
-                "toList": [
-                    "' + $email + '"
-                ],    
-                "subject": "ACTUALIZACIÓN DE DENUNCIA DE UN ACTO DE CORRUPCIÓN",
-                "from": "denuncias@regionancash.gob.pe",
-                "body": "' + $msj2 + '"
-                }';
+
+            $body = array("toList" => [$email], "subject" => "REGISTRO DE DENUNCIA DE UN ACTO DE CORRUPCIÓN", "from" => "denuncias@regionancash.gob.pe", "body" => $msj2);
+
+            $body = json_encode($body);
+
             $request = new Psr7Request('POST', 'https://regionancash.gob.pe/sendtoenvio.php', $headers, $body);
             $res = $client->sendAsync($request)->wait();
             $res->getBody();
