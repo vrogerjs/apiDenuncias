@@ -208,11 +208,11 @@ class DenunciaController extends Controller
             ];
             $body = '{
                 "toList": [
-                    "' + $email + '"
+                    "' . $email . '"
                 ],    
                 "subject": "REGISTRO DE DENUNCIA DE UN ACTO DE CORRUPCIÓN",
                 "from": "denuncias@regionancash.gob.pe",
-                "body": "' + $msj + '"
+                "body": "' . $msj . '"
                 }';
             $request = new Psr7Request('POST', 'https://regionancash.gob.pe/sendtoenvio.php', $headers, $body);
             $res = $client->sendAsync($request)->wait();
