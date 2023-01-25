@@ -20,7 +20,7 @@ class DenunciaController extends Controller
             ->join('oficinas', 'oficinas.id', '=', 'personals.oficina_id')
             ->where('denuncias.respuesta', null)
             ->select('denuncias.*', 'motivos.titulo', 'motivos.descripcion', 'personals.apenombres as apenombresdenunciado', 'personals.cargo as cargodenunciado', 'oficinas.name', 'personals.oficina_id')
-            ->latest('id')
+            ->latest('denuncias.id')
             ->paginate(10);
 
         return response()->json($denuncias, 200);
@@ -55,9 +55,11 @@ class DenunciaController extends Controller
     {
         $denuncias = DB::table('denuncias')
             ->join('motivos', 'motivos.id', '=', 'denuncias.motivo_id')
+            ->join('personals', 'personals.id', '=', 'denuncias.personal_id')
+            ->join('oficinas', 'oficinas.id', '=', 'personals.oficina_id')
             ->where('denuncias.respuesta', '!=', null)
-            ->select('denuncias.*', 'motivos.titulo', 'motivos.descripcion')
-            ->latest('id')
+            ->select('denuncias.*', 'motivos.titulo', 'motivos.descripcion', 'personals.apenombres as apenombresdenunciado', 'personals.cargo as cargodenunciado', 'oficinas.name', 'personals.oficina_id')
+            ->latest('denuncias.id')
             ->paginate(10);
 
         return response()->json($denuncias, 200);
