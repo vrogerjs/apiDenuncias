@@ -9,6 +9,8 @@ use App\Models\Oficina;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use GuzzleHttp\Client;
+use GuzzleHttp\Psr7\Request as Psr7Request;
 
 class DenunciaController extends Controller
 {
@@ -196,15 +198,37 @@ class DenunciaController extends Controller
             $newDenuncia->borrado = '0';
             $newDenuncia->save();
 
-            $msj = 'Su Denuncia fue registrada con éxito, se le estará notificando el avance de su caso a traves del correo electrónico y/o celular.';
+            // $msj = 'Su Denuncia fue registrada con éxito, se le estará notificando el avance de su caso a traves del correo electrónico.';
+
+            $msj = '<p>Su denuncia de un acto de corrupción en el Gobierno Regional de Ancash fue registrado con éxito, así mismo en el transcurso de los días se le estará enviando un correo con lo actuado. <i><strong>"Por un gobierno de Integridad y Transparencia”</strong></i>.</p><p><strong>Gobierno Regional de Ancash</strong></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
+
+            $client = new Client();
+            $headers = [
+                'Content-Type' => 'application/json'
+            ];
+            $body = '{
+                "toList": [
+                    "' + $email + '"
+                ],    
+                "subject": "REGISTRO DE DENUNCIA DE UN ACTO DE CORRUPCIÓN",
+                "from": "denuncias@regionancash.gob.pe",
+                "body": "' + $msj + '"
+                }';
+            $request = new Psr7Request('POST', 'https://regionancash.gob.pe/sendtoenvio.php', $headers, $body);
+            $res = $client->sendAsync($request)->wait();
+            $res->getBody();
         }
 
         return response()->json(["result" => $result, 'msj' => $msj, 'selector' => $selector]);
     }
 
-    public function updateDenuncia(Request $request, $id)
+    public function updateDenuncia(Request $request)
     {
         $respuesta = $request->respuesta;
+        $id = $request->id;
+
+        $email = Denuncia::where('id', $id)->first();
+        $email = $email->email;
 
         $result = '1';
         $msj = '';
@@ -229,6 +253,24 @@ class DenunciaController extends Controller
             $updateDenuncia->save();
 
             $msj = 'Se registro el procedimiento de la denuncia con Éxito.';
+
+            $msj2 = '<p>Su denuncia de un acto de corrupción en el Gobierno Regional de Ancash fue actualizado con éxito. <br>Se actualizo con lo siguiente:' + $respuesta + '<i><strong>"Por un gobierno de Integridad y Transparencia”</strong></i>.</p><p><strong>Gobierno Regional de Ancash</strong></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
+
+            $client = new Client();
+            $headers = [
+                'Content-Type' => 'application/json'
+            ];
+            $body = '{
+                "toList": [
+                    "' + $email + '"
+                ],    
+                "subject": "ACTUALIZACIÓN DE DENUNCIA DE UN ACTO DE CORRUPCIÓN",
+                "from": "denuncias@regionancash.gob.pe",
+                "body": "' + $msj2 + '"
+                }';
+            $request = new Psr7Request('POST', 'https://regionancash.gob.pe/sendtoenvio.php', $headers, $body);
+            $res = $client->sendAsync($request)->wait();
+            $res->getBody();
         }
 
         return response()->json(["result" => $result, 'msj' => $msj, 'selector' => $selector]);

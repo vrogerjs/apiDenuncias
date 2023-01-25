@@ -105,7 +105,7 @@ Route::get('motivo', 'App\Http\Controllers\DenunciaController@getMotivo');
 Route::post('addDenuncia', 'App\Http\Controllers\DenunciaController@addDenuncia');
 
 // Registro de Respuesta a una Denuncia
-Route::put('updateDenuncia/{id}', 'App\Http\Controllers\DenunciaController@updateDenuncia');
+Route::put('updateDenuncia', 'App\Http\Controllers\DenunciaController@updateDenuncia');
 
 // Listado de Oficinas
 Route::get('oficina', 'App\Http\Controllers\DenunciaController@getOficina');
