@@ -200,7 +200,7 @@ class DenunciaController extends Controller
 
             // $msj = 'Su Denuncia fue registrada con éxito, se le estará notificando el avance de su caso a traves del correo electrónico.';
 
-            $msj = '<p>Su denuncia de un acto de corrupción en el Gobierno Regional de Ancash fue registrado con éxito, así mismo en el transcurso de los días se le estará enviando un correo con lo actuado. <i><strong>"Por un gobierno de Integridad y Transparencia"</strong></i>.</p><p><strong>Gobierno Regional de Ancash</strong></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
+            $msj = '<p>Su denuncia de un acto de corrupción en el Gobierno Regional de Ancash fue registrado con éxito, así mismo en el transcurso de los días se le estará enviando un correo con lo actuado. <i><strong>"Por un gobierno de Integridad y Transparencia"</strong></i>.</p><p><strong>Gobierno Regional de Ancash</strong></p>';
 
             $client = new Client(['verify' => false]);
             $headers = [
@@ -222,7 +222,7 @@ class DenunciaController extends Controller
     public function sendEmail(Request $request)
     {
         $email = "roger.jvs.08@gmail.com";
-        $msj = '<p>Su denuncia de un acto de corrupción en el Gobierno Regional de Ancash fue registrado con éxito, así mismo en el transcurso de los días se le estará enviando un correo con lo actuado. <i><strong>"Por un gobierno de Integridad y Transparencia"</strong></i>.</p><p><strong>Gobierno Regional de Ancash</strong></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
+        $msj = '<p>Su denuncia de un acto de corrupción en el Gobierno Regional de Ancash fue registrado con éxito, así mismo en el transcurso de los días se le estará enviando un correo con lo actuado. <i><strong>"Por un gobierno de Integridad y Transparencia"</strong></i>.</p><p><strong>Gobierno Regional de Ancash</strong></p>';
 
         $client = new Client(['verify' => false]);
         $headers = [
@@ -270,7 +270,7 @@ class DenunciaController extends Controller
 
             $msj = 'Se registro el procedimiento de la denuncia con Éxito.';
 
-            $msj2 = '<p>Su denuncia de acto de corrupción en el Gobierno Regional de Ancash fue actualizado con éxito.<br>La actualización fue:' . $respuesta . '. <i><strong>"Por un gobierno de Integridad y Transparencia"</strong></i>.</p><p><strong>Gobierno Regional de Ancash</strong></p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>';
+            $msj2 = '<p>Su denuncia de acto de corrupción en el Gobierno Regional de Ancash fue actualizado con éxito.<br>La actualización fue:' . $respuesta . '. <i><strong>"Por un gobierno de Integridad y Transparencia"</strong></i>.</p><p><strong>Gobierno Regional de Ancash</strong></p>';
 
             $client = new Client(['verify' => false]);
             $headers = [
