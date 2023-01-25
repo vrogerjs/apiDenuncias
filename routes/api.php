@@ -20,23 +20,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-// Listado de Denuncias
-Route::get('denuncia', 'App\Http\Controllers\DenunciaController@getDenuncia');
 
-// Listado de Denuncias con respuestas
-Route::get('respuesta', 'App\Http\Controllers\DenunciaController@getDenunciaRespuesta');
-
-// Listado de Motivos
-Route::get('motivo', 'App\Http\Controllers\DenunciaController@getMotivo');
-
-// Registro de Denuncia
-Route::post('addDenuncia', 'App\Http\Controllers\DenunciaController@addDenuncia');
-
-// Registro de Respuesta a una Denuncia
-Route::put('updateDenuncia/{id}', 'App\Http\Controllers\DenunciaController@updateDenuncia');
-
-// Listado de Oficinas
-Route::get('oficina', 'App\Http\Controllers\DenunciaController@getOficina');
-
-// Busqueda de Personal por Oficina
-Route::get('personal/{id}', 'App\Http\Controllers\DenunciaController@getPersonalxOficina');
