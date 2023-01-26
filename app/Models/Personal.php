@@ -9,5 +9,5 @@ class Personal extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['apenombres', 'cargo', 'oficina_id'];
+    // protected $fillable = ['apenombres', 'cargo', 'oficina_id'];
 }

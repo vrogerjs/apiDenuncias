@@ -9,11 +9,10 @@ class Denuncia extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['anonimo', 'tipopersona', 'tipodocumento', 'nrodocumento', 'apenombres', 'razonsocial', 'representante', 'domicilio', 'telefono', 'email', 'funcionario', 'cargo', 'vinculo', 'deschechos', 'documentacion', 'respuesta', 'activo', 'borrado', 'motivo_id','personal_id'];
-        
+    protected $fillable = ['anonimo', 'tipopersona', 'tipodocumento', 'nrodocumento', 'apenombres', 'razonsocial', 'representante', 'domicilio', 'telefono', 'email', 'funcionario', 'cargo', 'vinculo', 'deschechos', 'documentacion', 'respuesta', 'activo', 'borrado', 'motivo_id', 'oficina_id', 'apenombresdenunciado', 'cargodenunciado'];
+
     public function motivo()
     {
         return $this->belongsTo(Motivo::class);
     }
-
 }

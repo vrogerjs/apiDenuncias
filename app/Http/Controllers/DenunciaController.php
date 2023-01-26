@@ -18,12 +18,11 @@ class DenunciaController extends Controller
     {
         $denuncias = DB::table('denuncias')
             ->join('motivos', 'motivos.id', '=', 'denuncias.motivo_id')
-            ->join('personals', 'personals.id', '=', 'denuncias.personal_id')
-            ->join('oficinas', 'oficinas.id', '=', 'personals.oficina_id')
+            ->join('oficinas', 'oficinas.id', '=', 'denuncias.oficina_id')
             ->where('denuncias.respuesta', null)
-            ->select('denuncias.*', 'motivos.titulo', 'motivos.descripcion', 'personals.apenombres as apenombresdenunciado', 'personals.cargo as cargodenunciado', 'oficinas.name', 'personals.oficina_id')
+            ->select('denuncias.*', 'motivos.titulo', 'motivos.descripcion', 'oficinas.name')
             ->latest('denuncias.id')
-            ->paginate(10);
+            ->paginate(15);
 
         return response()->json($denuncias, 200);
     }
@@ -57,12 +56,11 @@ class DenunciaController extends Controller
     {
         $denuncias = DB::table('denuncias')
             ->join('motivos', 'motivos.id', '=', 'denuncias.motivo_id')
-            ->join('personals', 'personals.id', '=', 'denuncias.personal_id')
-            ->join('oficinas', 'oficinas.id', '=', 'personals.oficina_id')
+            ->join('oficinas', 'oficinas.id', '=', 'denuncias.oficina_id')
             ->where('denuncias.respuesta', '!=', null)
-            ->select('denuncias.*', 'motivos.titulo', 'motivos.descripcion', 'personals.apenombres as apenombresdenunciado', 'personals.cargo as cargodenunciado', 'oficinas.name', 'personals.oficina_id')
+            ->select('denuncias.*', 'motivos.titulo', 'motivos.descripcion', 'oficinas.name')
             ->latest('denuncias.id')
-            ->paginate(10);
+            ->paginate(15);
 
         return response()->json($denuncias, 200);
     }
@@ -84,12 +82,13 @@ class DenunciaController extends Controller
         $organo = $request->organo;
         $cargo = $request->cargo;
         $vinculo = $request->vinculo;
-        // $apenombresdenunciado = $request->apenombresdenunciado;
-        // $cargodenunciado = $request->cargodenunciado;
+        $apenombresdenunciado = $request->apenombresdenunciado;
+        $cargodenunciado = $request->cargodenunciado;
         $deschechos = $request->deschechos;
         $documentacion = $request->documentacion;
         $motivo_id = $request->motivo_id;
-        $personal_id = $request->personal;
+        $oficina_id = $request->oficina;
+        // $personal_id = $request->personal;
         $tempFile = $request->tempFile;
 
         $result = '1';
@@ -117,8 +116,8 @@ class DenunciaController extends Controller
         $input4  = array('funcionario' => $funcionario);
         $reglas4 = array('funcionario' => 'required');
 
-        // $input5  = array('apenombresdenunciado' => $apenombresdenunciado);
-        // $reglas5 = array('apenombresdenunciado' => 'required');
+        $input5  = array('apenombresdenunciado' => $apenombresdenunciado);
+        $reglas5 = array('apenombresdenunciado' => 'required');
 
         // $input6  = array('cargodenunciado' => $cargodenunciado);
         // $reglas6 = array('cargodenunciado' => 'required');
@@ -129,14 +128,14 @@ class DenunciaController extends Controller
         $input8  = array('motivo_id' => $motivo_id);
         $reglas8 = array('motivo_id' => 'required');
 
-        $input9  = array('personal_id' => $personal_id);
-        $reglas9 = array('personal_id' => 'required');
+        $input9  = array('oficina_id' => $oficina_id);
+        $reglas9 = array('oficina_id' => 'required');
 
         $validator1 = Validator::make($input1, $reglas1);
         $validator2 = Validator::make($input2, $reglas2);
         $validator3 = Validator::make($input3, $reglas3);
         $validator4 = Validator::make($input4, $reglas4);
-        // $validator5 = Validator::make($input5, $reglas5);
+        $validator5 = Validator::make($input5, $reglas5);
         // $validator6 = Validator::make($input6, $reglas6);
         $validator7 = Validator::make($input7, $reglas7);
         $validator8 = Validator::make($input8, $reglas8);
@@ -158,6 +157,10 @@ class DenunciaController extends Controller
             $result = '0';
             $msj = 'Seleccione si es funcionario del Gobierno Regional de Áncash.';
             $selector = 'cbufuncionario';
+        } elseif ($validator5->fails()) {
+            $result = '0';
+            $msj = 'Ingrese los Apellidos y Nombres del denunciado/a.';
+            $selector = 'txtapenombresdenunciado';
         } elseif ($validator7->fails()) {
             $result = '0';
             $msj = 'Ingrese una descripción detallada de los hechos suscitados.';
@@ -168,8 +171,8 @@ class DenunciaController extends Controller
             $selector = 'cbumotivo';
         } elseif ($validator9->fails()) {
             $result = '0';
-            $msj = 'Seleccione el nombre del personal a denunciar.';
-            $selector = 'cbupersonal';
+            $msj = 'Seleccione la Dependencia o Institución.';
+            $selector = 'cbuoficina';
         } else {
 
             $newDenuncia = new Denuncia();
@@ -188,12 +191,12 @@ class DenunciaController extends Controller
             $newDenuncia->organo = $organo;
             $newDenuncia->cargo = $cargo;
             $newDenuncia->vinculo = $vinculo;
-            // $newDenuncia->apenombresdenunciado = $apenombresdenunciado;
-            // $newDenuncia->cargodenunciado = $cargodenunciado;
+            $newDenuncia->apenombresdenunciado = $apenombresdenunciado;
+            $newDenuncia->cargodenunciado = $cargodenunciado;
             $newDenuncia->deschechos = $deschechos;
             $newDenuncia->documentacion = $tempFile;
             $newDenuncia->motivo_id = $motivo_id;
-            $newDenuncia->personal_id = $personal_id;
+            $newDenuncia->oficina_id = $oficina_id;
             $newDenuncia->activo = '1';
             $newDenuncia->borrado = '0';
             $newDenuncia->save();

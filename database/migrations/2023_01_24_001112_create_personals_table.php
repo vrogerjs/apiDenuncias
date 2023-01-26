@@ -18,9 +18,9 @@ class CreatePersonalsTable extends Migration
 
             $table->string('apenombres', 256)->nullable();
             $table->string('cargo', 1024)->nullable();
-            $table->unsignedBigInteger('oficina_id');
+            // $table->unsignedBigInteger('oficina_id');
 
-            $table->foreign('oficina_id')->references('id')->on('oficinas')->onDelete('cascade');
+            // $table->foreign('oficina_id')->references('id')->on('oficinas')->onDelete('cascade');
 
             $table->timestamps();
         });

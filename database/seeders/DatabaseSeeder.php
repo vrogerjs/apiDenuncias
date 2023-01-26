@@ -16,6 +16,6 @@ class DatabaseSeeder extends Seeder
         // \App\Models\User::factory(10)->create();
         $this->call(MotivoSeeder::class);
         $this->call(OficinaSeeder::class);
-        $this->call(PersonalSeeder::class);
+        // $this->call(PersonalSeeder::class);
     }
 }

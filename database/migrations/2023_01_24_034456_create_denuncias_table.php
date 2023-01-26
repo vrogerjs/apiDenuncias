@@ -30,18 +30,18 @@ class CreateDenunciasTable extends Migration
             $table->string('organo', 1024)->nullable();
             $table->string('cargo', 1024)->nullable();
             $table->text('vinculo')->nullable();
-            // $table->string('apenombresdenunciado', 256)->nullable();
-            // $table->string('cargodenunciado', 1024)->nullable();
+            $table->string('apenombresdenunciado', 256)->nullable();
+            $table->string('cargodenunciado', 1024)->nullable();
             $table->text('deschechos')->nullable();
             $table->string('documentacion', 1024)->nullable();
             $table->text('respuesta')->nullable();
             $table->tinyInteger('activo')->nullable();
             $table->tinyInteger('borrado')->nullable();
             $table->unsignedBigInteger('motivo_id');
-            $table->unsignedBigInteger('personal_id');
+            $table->unsignedBigInteger('oficina_id');
 
             $table->foreign('motivo_id')->references('id')->on('motivos')->onDelete('cascade');
-            $table->foreign('personal_id')->references('id')->on('personals')->onDelete('cascade');
+            $table->foreign('oficina_id')->references('id')->on('oficinas')->onDelete('cascade');
 
 
             $table->timestamps();
